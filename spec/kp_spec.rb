@@ -57,5 +57,23 @@ describe 'Square#shortest_knight_path' do
       sq(0, 0), sq(2, 1), sq(3, 3), sq(5, 2), sq(6, 4)
     ].collect(&:to_s).join("\n"))
   end
+
+  it 'yields the short path from sq(0, 0) to (4, 4)' do
+
+    expect(
+      sq(0, 0).shortest_knight_path(sq(4, 4)).join("\n")
+    ).to eq([
+      sq(0, 0), sq(1, 2), sq(3, 3), sq(5, 2), sq(4, 4)
+    ].collect(&:to_s).join("\n"))
+  end
+
+  it 'yields the short path from sq(0, 0) to (5, 0)' do
+
+    expect(
+      sq(0, 0).shortest_knight_path(sq(5, 0)).join("\n")
+    ).to eq([
+      sq(0, 0), sq(2, 1), sq(3, -1), sq(5, 0)
+    ].collect(&:to_s).join("\n"))
+  end
 end
 
