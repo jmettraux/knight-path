@@ -26,7 +26,7 @@ class Square
       .inject([]) { |a, ks| a << [ ks.distance(target), ks ] }
       .sort_by(&:first)
     while (
-      accu.include?(dss.first.last) || dss.first.first.to_i == 1
+      accu.include?(dss.first.last) || dss.first.first == 1
     ); dss.shift; end
     dss.first.last.shortest_knight_path(target, accu)
   end
