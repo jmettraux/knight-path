@@ -23,7 +23,7 @@ class Square
     accu << self
     return accu if target == self
     knight_squares
-      .collect { |ks| [ ks.distance(target), ks ] }
+      .collect { |s| [ s.distance(target), s ] }
       .sort_by { |d, s| d }
       .find { |d, s| ! (accu.include?(s) || d == 1) }
       .last
