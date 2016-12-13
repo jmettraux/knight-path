@@ -23,8 +23,8 @@ class Square
     accu << self
     return accu if target == self
     knight_squares
-      .inject([]) { |a, ks| a << [ ks.distance(target), ks ] }
-      .sort_by(&:first)
+      .collect { |ks| [ ks.distance(target), ks ] }
+      .sort_by { |d, s| d }
       .find { |d, s| ! (accu.include?(s) || d == 1) }
       .last
       .shortest_knight_path(target, accu)
@@ -55,8 +55,8 @@ puts "== to 6, 3"
 path = sq(0, 0).shortest_knight_path(sq(6, 3))
 puts path.collect(&:to_s).join(' -> ')
 p path.length
-puts "== to 6, 3"
-path = sq(0, 0).shortest_knight_path(sq(6, 3))
+puts "== to 6, 4"
+path = sq(0, 0).shortest_knight_path(sq(6, 4))
 puts path.collect(&:to_s).join(' -> ')
 p path.length
 
