@@ -4,87 +4,57 @@ require 'kp'
 
 describe 'Square#shortest_knight_path' do
 
-  it 'yields the short path from sq(0, 0) to (2, 1)' do
+  [
+    [ sq(0, 0), sq(2, 1) ],
+    [ sq(0, 0), sq(2, 1), sq(1, 3), sq(3, 2) ],
+    [ sq(0, 0), sq(2, 1), sq(4, 2) ],
+    [ sq(0, 0), sq(2, 1), sq(3, 3), sq(5, 2) ],
+    [ sq(0, 0), sq(2, 1), sq(4, 2), sq(6, 3) ],
+    [ sq(0, 0), sq(2, 1), sq(3, 3), sq(4, 5), sq(6, 4) ],
+    [ sq(0, 0), sq(1, 2), sq(3, 3), sq(2, 5), sq(4, 4) ],
+    [ sq(0, 0), sq(2, 1), sq(3, -1), sq(5, 0) ],
+    [ sq(0, 0), sq(2, 1), sq(4, 2), sq(6, 3), sq(7, 5), sq(9, 4) ]
+  ].each do |path|
 
-    expect(
-      sq(0, 0).shortest_knight_path(sq(2, 1)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1)
-    ].collect(&:to_s).join("\n"))
+    start = path.first
+    target = path.last
+
+    it "yields the shortest path from #{start} to #{target}" do
+
+      expect(
+        start.shortest_knight_path(target).join("\n")
+      ).to eq(
+        path.collect(&:to_s).join("\n")
+      )
+    end
   end
+end
 
-  it 'yields the short path from sq(0, 0) to (3, 2)' do
+describe 'Square#shortest_knight_path_length_length' do
 
-    expect(
-      sq(0, 0).shortest_knight_path(sq(3, 2)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(1, 3), sq(3, 2)
-    ].collect(&:to_s).join("\n"))
-  end
+  [
+    [ [ 2, 1 ], 1 ],
+    [ [ 3, 2 ], 3 ],
+    [ [ 4, 2 ], 2 ],
+    [ [ 5, 2 ], 3 ],
+    [ [ 6, 4 ], 4 ],
+    [ [ 4, 4 ], 4 ],
+    [ [ 5, 0 ], 3 ],
+    [ [ 9, 4 ], 5 ],
+    [ [ 2, 14 ], 8 ],
+    [ [ 13, 15 ], 10 ],
+    [ [ 15, 24 ], 13 ],
+    [ [ 13, 17 ], 10 ]
+  ].each do |(x, y), d|
 
-  it 'yields the short path from sq(0, 0) to (4, 2)' do
+    it "yields the shortest path length from sq(0, 0) to (#{x}, #{y})" do
 
-    expect(
-      sq(0, 0).shortest_knight_path(sq(4, 2)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(4, 2)
-    ].collect(&:to_s).join("\n"))
-  end
+      ln = sq(0, 0).shortest_knight_path_length(sq(x, y))
+      pa = sq(0, 0).shortest_knight_path(sq(x, y))
 
-  it 'yields the short path from sq(0, 0) to (5, 2)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(5, 2)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(3, 3), sq(5, 2)
-    ].collect(&:to_s).join("\n"))
-  end
-
-  it 'yields the short path from sq(0, 0) to (6, 3)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(6, 3)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(4, 2), sq(6, 3)
-    ].collect(&:to_s).join("\n"))
-  end
-
-  it 'yields the short path from sq(0, 0) to (6, 4)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(6, 4)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(3, 3), sq(4, 5), sq(6, 4)
-    ].collect(&:to_s).join("\n"))
-  end
-
-  it 'yields the short path from sq(0, 0) to (4, 4)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(4, 4)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(1, 2), sq(3, 3), sq(2, 5), sq(4, 4)
-    ].collect(&:to_s).join("\n"))
-  end
-
-  it 'yields the short path from sq(0, 0) to (5, 0)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(5, 0)).join("\n")
-    ).to eq([
-      sq(0, 0), sq(2, 1), sq(3, -1), sq(5, 0)
-    ].collect(&:to_s).join("\n"))
-  end
-
-  it 'yields the short path from sq(0, 0) to (9, 4)' do
-
-    expect(
-      sq(0, 0).shortest_knight_path(sq(9, 4)).join("\n")
-    ).to eq([
-      sq(0, 0),
-      sq(2, 1), sq(4, 2), sq(6, 3), sq(7, 5),
-      sq(9, 4)
-    ].collect(&:to_s).join("\n"))
+      expect(ln).to eq(d)
+      expect(ln).to eq(pa.size - 1)
+    end
   end
 end
 
