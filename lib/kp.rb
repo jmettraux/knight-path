@@ -23,10 +23,12 @@ class Square
     accu << self
     return accu if target == self
     knight_squares
+      .reject { |s| accu.include?(s) } # reject already visited squares
       .collect { |s| [ s.distance(target), s ] }
+      .reject { |d, s| d == 1 || d == 8 } # reject "bad" approaches
       .sort_by { |d, s| d }
-      .find { |d, s| ! (accu.include?(s) || d == 1 || d == 8) }
-      .last
+      .first # take first remaining (distance, square)
+      .last # take square (last elt of tuple)
       .shortest_knight_path(target, accu)
   end
   def to_s
