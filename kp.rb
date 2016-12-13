@@ -15,7 +15,7 @@ class Square
     [
       [ 1, -2 ], [ 2, -1 ], [ 2, 1 ], [ 1, 2 ],
       [ -1, 2 ], [ -2, 1 ], [ -2, -1 ], [ -1, -2 ]
-   ].collect { |x, y| Square.new(@x + x, @y + y) }
+    ].collect { |x, y| Square.new(@x + x, @y + y) }
   end
   def shortest_knight_path(target, accu=[])
     accu << self
@@ -29,7 +29,7 @@ class Square
     dss.first.last.shortest_knight_path(target, accu)
   end
   def to_s
-    "sq(#{@x}, #{y})"
+    "sq(#{@x}, #{@y})"
   end
 end
 def sq(x, y); Square.new(x, y); end
