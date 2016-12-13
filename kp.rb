@@ -22,13 +22,12 @@ class Square
   def shortest_knight_path(target, accu=[])
     accu << self
     return accu if target == self
-    dss = knight_squares
+    knight_squares
       .inject([]) { |a, ks| a << [ ks.distance(target), ks ] }
       .sort_by(&:first)
-    while (
-      accu.include?(dss.first[1]) || dss.first[0] == 1
-    ); dss.shift; end
-    dss.first[1].shortest_knight_path(target, accu)
+      .find { |d, s| ! (accu.include?(s) || d == 1) }
+      .last
+      .shortest_knight_path(target, accu)
   end
   def to_s
     "sq(#{@x}, #{@y})"
