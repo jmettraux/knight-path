@@ -9,7 +9,9 @@ class Square
     s.is_a?(Square) && s.x == @x && s.y == @y
   end
   def distance(s)
-    Math.sqrt((s.x - @x) ** 2 + (s.y - @y) ** 2)
+    #Math.sqrt((s.x - @x) ** 2 + (s.y - @y) ** 2)
+      # no need to compute the square root...
+    (s.x - @x) ** 2 + (s.y - @y) ** 2
   end
   def knight_squares
     [
