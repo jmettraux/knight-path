@@ -35,28 +35,3 @@ class Square
 end
 def sq(x, y); Square.new(x, y); end
 
-puts "== to 2, 1"
-path = sq(0, 0).shortest_knight_path(sq(2, 1))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-puts "== to 3, 2"
-path = sq(0, 0).shortest_knight_path(sq(3, 2))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-puts "== to 4, 2"
-path = sq(0, 0).shortest_knight_path(sq(4, 2))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-puts "== to 5, 2"
-path = sq(0, 0).shortest_knight_path(sq(5, 2))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-puts "== to 6, 3"
-path = sq(0, 0).shortest_knight_path(sq(6, 3))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-puts "== to 6, 4"
-path = sq(0, 0).shortest_knight_path(sq(6, 4))
-puts path.collect(&:to_s).join(' -> ')
-p path.length
-
