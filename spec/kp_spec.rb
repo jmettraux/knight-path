@@ -54,7 +54,7 @@ describe 'Square#shortest_knight_path' do
     expect(
       sq(0, 0).shortest_knight_path(sq(6, 4)).join("\n")
     ).to eq([
-      sq(0, 0)
+      sq(0, 0), sq(2, 1), sq(3, 3), sq(5, 2), sq(6, 4)
     ].collect(&:to_s).join("\n"))
   end
 end

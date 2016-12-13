@@ -25,7 +25,7 @@ class Square
     knight_squares
       .collect { |s| [ s.distance(target), s ] }
       .sort_by { |d, s| d }
-      .find { |d, s| ! (accu.include?(s) || d == 1) }
+      .find { |d, s| ! (accu.include?(s) || d == 1 || d == 8) }
       .last
       .shortest_knight_path(target, accu)
   end
