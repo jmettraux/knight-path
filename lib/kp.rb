@@ -34,6 +34,10 @@ class Square
   def to_s
     "sq(#{@x}, #{@y})"
   end
+  def shortest_knight_path_length(target)
+    dx, dy = [ (target.x - x).abs, (target.y - y).abs ].sort.reverse
+    Math.sqrt((dx ** 2 + dy ** 2) / 5.0).ceil
+  end
 end
 def sq(x, y); Square.new(x, y); end
 

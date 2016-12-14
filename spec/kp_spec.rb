@@ -33,7 +33,9 @@ end
 describe 'Square#shortest_knight_path_length_length' do
 
   [
+    [ [ 0, 0 ], 0 ],
     [ [ 2, 1 ], 1 ],
+    [ [ 7, 0 ], 5 ],
     [ [ 3, 2 ], 3 ],
     [ [ 4, 2 ], 2 ],
     [ [ 5, 2 ], 3 ],
@@ -44,7 +46,10 @@ describe 'Square#shortest_knight_path_length_length' do
     [ [ 2, 14 ], 8 ],
     [ [ 13, 15 ], 10 ],
     [ [ 15, 24 ], 13 ],
-    [ [ 13, 17 ], 10 ]
+    [ [ 13, 17 ], 10 ],
+    [ [ 24, 12 ], 12 ],
+    [ [ 12, 12 ], 8 ],
+    [ [ 24, 24 ], 16 ]
   ].each do |(x, y), d|
 
     it "yields the shortest path length from sq(0, 0) to (#{x}, #{y})" do
@@ -52,8 +57,8 @@ describe 'Square#shortest_knight_path_length_length' do
       ln = sq(0, 0).shortest_knight_path_length(sq(x, y))
       pa = sq(0, 0).shortest_knight_path(sq(x, y))
 
-      expect(ln).to eq(d)
       expect(ln).to eq(pa.size - 1)
+      expect(ln).to eq(d)
     end
   end
 end
